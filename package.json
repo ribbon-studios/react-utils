@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "packageManager": "yarn@3.6.1",
   "source": "src/index.ts",
+  "type": "module",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
