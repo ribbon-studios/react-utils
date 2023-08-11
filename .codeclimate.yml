@@ -1,4 +1,4 @@
 version: '2'
 exclude_patterns:
-  - .yarn/
-  - **/__tests__/
+  - '.yarn/'
+  - '**/__tests__/'
