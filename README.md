@@ -13,37 +13,33 @@
 
 Collection of react utilities curated by the Rainbow Cafe~
 
-## `useCachedState` and `useReadOnlyCachedState`
+## `useCachedState` / `useReadOnlyCachedState` / `useClassNames`
 
 ```tsx
-import {
-  useCachedState, 
-  useReadOnlyCachedState,
-} from '@rain-cafe/react-utils';
+import { useCachedState, useReadOnlyCachedState, useClassNames, classNames } from '@rain-cafe/react-utils';
 import classnames from 'classnames';
 import * as styles from './MySimpleInput.module.scss';
 
 export type MySimpleInputProps = {
   className?: string;
   value?: string;
-}
+};
 
 export function MySimpleInput({ className: externalClassName, value: externalValue }: MySimpleInputProps) {
   // This is a utility for keeping external properties in-sync with the internal state
   const [value, setValue] = useCachedState(() => externalValue, [externalValue]);
 
   // This is a utility for computing properties only when changes occur
+
+  // Longer Version
   const className = useReadOnlyCachedState(() => {
-    return classnames(styles.input, externalClassName);
+    return classNames(styles.input, externalClassName);
   }, [externalClassName]);
 
-  return (
-    <input 
-      className={className}
-      value={value} 
-      onChange={(event) => setValue(event.target.value)} 
-    />
-  );
+  // Short-hand Version
+  const className = useClassNames([styles.input, externalClassName]);
+
+  return <input className={className} value={value} onChange={(event) => setValue(event.target.value)} />;
 }
 ```
 
