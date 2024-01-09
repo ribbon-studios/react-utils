@@ -11,12 +11,12 @@ Then this is the perfect place for you!
 
 - Install the Dependencies
 
-```sh
-$ yarn
+```bash
+bun install
 ```
 
 ## Run the Tests~
 
-```sh
-$ yarn test
+```bash
+bun run test
 ```

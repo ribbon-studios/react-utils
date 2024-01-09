@@ -1,7 +1,6 @@
 {
   "name": "@rain-cafe/react-utils",
   "version": "1.0.0",
-  "packageManager": "yarn@3.6.1",
   "source": "src/index.ts",
   "type": "module",
   "exports": {
@@ -53,5 +52,8 @@
     "type": "git",
     "url": "git+https://github.com/rain-cafe/react-utils.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "classnames": "^2.5.1"
+  }
 }
