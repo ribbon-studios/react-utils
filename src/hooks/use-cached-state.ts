@@ -1,3 +1,4 @@
+import classNames, { ArgumentArray } from 'classnames';
 import { DependencyList, Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 export function useCachedState<T>(
@@ -15,4 +16,10 @@ export function useReadOnlyCachedState<T>(supplier: () => T, deps: DependencyLis
   const [value] = useCachedState(supplier, deps);
 
   return value;
+}
+
+export function useClassNames(deps: ArgumentArray): string {
+  return useReadOnlyCachedState(() => {
+    return classNames(deps);
+  }, deps);
 }
