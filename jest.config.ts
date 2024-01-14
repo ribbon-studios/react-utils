@@ -1,23 +1,19 @@
-import type { JestConfigWithTsJest } from 'ts-jest';
+import type { Config } from 'jest';
+import { readFileSync } from 'fs';
 
-const jestConfig: JestConfigWithTsJest = {
+// Changed sourcemaps to inline resolving issues with https://github.com/swc-project/swc/issues/3854
+const config = JSON.parse(readFileSync(`${__dirname}/.swcrc`, 'utf-8'));
+
+export default {
   roots: ['<rootDir>/src'],
-  testEnvironment: 'jsdom',
+  testEnvironment: '@happy-dom/jest-environment',
 
   transform: {
-    '^.+\\.tsx?$': [
-      'ts-jest',
-      {
-        tsconfig: 'tsconfig.json',
-      },
-    ],
+    '^.+\\.(t|j)sx?$': ['@swc/jest', config],
   },
 
   collectCoverageFrom: ['<rootDir>/src/**/*'],
-
   coveragePathIgnorePatterns: ['__tests__'],
-
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
-};
-
-export default jestConfig;
+  setupFilesAfterEnv: ['@inrupt/jest-jsdom-polyfills', '@testing-library/jest-dom/extend-expect'],
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+} satisfies Config;

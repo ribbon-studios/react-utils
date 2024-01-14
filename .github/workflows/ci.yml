@@ -74,7 +74,7 @@ jobs:
       - name: Build
         run: bun run build
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: build
           path: dist
@@ -85,6 +85,7 @@ jobs:
     needs: [lint, test, build]
     steps:
       - uses: actions/checkout@v4
+      - run: git --version
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
@@ -92,13 +93,13 @@ jobs:
       - name: Install Packages
         run: bun install --frozen-lockfile
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: build
           path: dist
 
       - name: Deploy
-        run: bunx semantic-release
+        run: bunx semantic-release@^22
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

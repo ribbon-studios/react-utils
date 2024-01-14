@@ -43,6 +43,22 @@ export function MySimpleInput({ className: externalClassName, value: externalVal
 }
 ```
 
+## `useSubtleCrypto`
+
+```tsx
+import { useSubtleCrypto } from '@rain-cafe/react-utils';
+
+export type ProfileProps = {
+  email?: string;
+};
+
+export function Profile({ email }: ProfileProps) {
+  const hashedEmail = useSubtleCrypto('SHA-256', email);
+
+  return <img src={`https://gravatar.com/avatar/${hashedEmail}.jpg`} />;
+}
+```
+
 [_**Want to Contribute?**_](/CONTRIBUTING.md)
 
 [npm-version-image]: https://img.shields.io/npm/v/@rain-cafe/react-utils.svg
