@@ -15,11 +15,21 @@ describe('Crypto Utils', () => {
     });
 
     it('should support being provided null', async () => {
-      await expect(hash('SHA-256', null)).resolves.toEqual(null);
+      await expect(hash('SHA-256', null)).resolves.toEqual(undefined);
     });
 
     it('should support being provided undefined', async () => {
-      await expect(hash('SHA-256', undefined)).resolves.toEqual(null);
+      await expect(hash('SHA-256', undefined)).resolves.toEqual(undefined);
+    });
+
+    it('should support being provided no algorithm', async () => {
+      await expect(hash(undefined, 'test')).resolves.toEqual(undefined);
+    });
+
+    it('should support default values', async () => {
+      const defaultValue = 'hello';
+
+      await expect(hash(undefined, 'test', defaultValue)).resolves.toEqual(defaultValue);
     });
   });
 });

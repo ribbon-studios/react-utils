@@ -1,7 +1,11 @@
 export type Algorithms = 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512';
 
-export async function hash(algorithm: Algorithms, message?: string): Promise<string> {
-  if (!message) return null;
+export async function hash(
+  algorithm?: Algorithms,
+  message?: string,
+  defaultValue?: string
+): Promise<string | undefined> {
+  if (!algorithm || !message) return defaultValue;
 
   const msgBuffer = new TextEncoder().encode(message);
 
