@@ -8,6 +8,8 @@ export default {
   roots: ['<rootDir>/src'],
   testEnvironment: '@happy-dom/jest-environment',
 
+  coverageProvider: 'v8',
+
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc/jest', config],
   },

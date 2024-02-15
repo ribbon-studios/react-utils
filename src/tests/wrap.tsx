@@ -42,7 +42,11 @@ export function wrap<WC extends ElementType>(
     };
   };
 }
+
+// For some reason its marking the namespace as untested... ?
+/* c8 ignore start */
 export namespace wrap {
+  /* c8 ignore end */
   export function concat(...wrappers: ReturnType<typeof wrap>[]): ReturnType<typeof wrap> {
     return async <C extends React.ElementType>(component: SupportedComponentFormats<C>) => {
       let result;
