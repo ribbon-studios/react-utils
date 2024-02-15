@@ -1,4 +1,4 @@
-import { ComponentProps, ElementType } from 'react';
+import { ComponentProps, ElementType, useMemo } from 'react';
 
 export type SupportedComponentFormats<C extends React.ElementType> = C | Promise<C | { Component: C } | { default: C }>;
 
@@ -34,9 +34,10 @@ export function wrap<WC extends ElementType>(
   return async <C extends React.ElementType>(component: SupportedComponentFormats<C>) => {
     const WrappedComponent: any = await getComponent(wrappedComponent);
     const Component = await getComponent(component);
-    const outerProps = getComponentProps(wrappedProps);
 
     return (props: ComponentProps<C>) => {
+      const outerProps = useMemo(() => getComponentProps(wrappedProps), []);
+
       return <WrappedComponent {...outerProps} children={<Component {...props} />} />;
     };
   };

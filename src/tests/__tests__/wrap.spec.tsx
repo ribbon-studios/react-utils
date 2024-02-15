@@ -100,4 +100,33 @@ describe('fn(wrap)', () => {
 
     expect(screen.getByText('Index')).toBeTruthy();
   });
+
+  it('should providing components via default async exports', async () => {
+    const mockOptions = jest.fn();
+    const Component = await wrap(MemoryRouter, mockOptions);
+
+    const MyComponent = await Component(
+      Promise.resolve({
+        default: () => (
+          <Routes>
+            <Route index element={'Index'} />
+          </Routes>
+        ),
+      })
+    );
+
+    expect(mockOptions).toHaveBeenCalledTimes(0);
+
+    render(<MyComponent />);
+
+    expect(mockOptions).toHaveBeenCalledTimes(1);
+
+    const { rerender } = render(<MyComponent />);
+
+    expect(mockOptions).toHaveBeenCalledTimes(2);
+
+    rerender(<MyComponent />);
+
+    expect(mockOptions).toHaveBeenCalledTimes(2);
+  });
 });
