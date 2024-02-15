@@ -46,6 +46,30 @@ export function Profile({ email }: ProfileProps) {
 }
 ```
 
+## `wrap`
+
+This utility is more for testing purposes to easily create wrappers for other components.
+
+```tsx
+import { wrap } from '@rain-cafe/react-utils';
+import { MemoryRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const Router = wrap(MemoryRouter);
+const ReactQuery = wrap(QueryClientProvider, () => ({
+  client: new QueryClient(),
+}));
+
+it('should ...', async () => {
+  const Component = await Router(ReactQuery(import('../MyComponent.tsx')));
+
+  // Properties are forwarded to your component as you'd expect
+  render(<Component value="Hello world!" />);
+
+  // ...
+});
+```
+
 [_**Want to Contribute?**_](/CONTRIBUTING.md)
 
 [npm-version-image]: https://img.shields.io/npm/v/@rain-cafe/react-utils.svg
