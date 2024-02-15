@@ -42,3 +42,17 @@ export function wrap<WC extends ElementType>(
     };
   };
 }
+export namespace wrap {
+  export function concat(...wrappers: ReturnType<typeof wrap>[]): ReturnType<typeof wrap> {
+    return async <C extends React.ElementType>(component: SupportedComponentFormats<C>) => {
+      let result;
+
+      // TODO: Figure out if this can be generated per concater rather then per component
+      for (const wrapper of wrappers) {
+        result = result ? wrapper(result) : wrapper(component);
+      }
+
+      return result;
+    };
+  }
+}
