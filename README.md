@@ -70,6 +70,32 @@ it('should ...', async () => {
 });
 ```
 
+### `wrap.concat`
+
+Helper function for wrappers that combines them together, useful if you need the whole kitchen sink!
+
+```tsx
+import { wrap } from '@rain-cafe/react-utils';
+import { MemoryRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const Router = wrap(MemoryRouter);
+const ReactQuery = wrap(QueryClientProvider, () => ({
+  client: new QueryClient(),
+}));
+
+const KitchenSink = wrap.concat(Router, ReactQuery);
+
+it('should ...', async () => {
+  const Component = await KitchenSink(import('../MyComponent.tsx')));
+
+  // Properties are forwarded to your component as you'd expect
+  render(<Component value="Hello world!" />);
+
+  // ...
+});
+```
+
 [_**Want to Contribute?**_](/CONTRIBUTING.md)
 
 [npm-version-image]: https://img.shields.io/npm/v/@rain-cafe/react-utils.svg
