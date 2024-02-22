@@ -8,6 +8,10 @@ export default {
   roots: ['<rootDir>/src'],
   testEnvironment: '@happy-dom/jest-environment',
 
+  moduleNameMapper: {
+    '^@rain-cafe/react-utils$': '<rootDir>/src/index.ts',
+  },
+
   coverageProvider: 'v8',
 
   transform: {
@@ -16,6 +20,6 @@ export default {
 
   collectCoverageFrom: ['<rootDir>/src/**/*'],
   coveragePathIgnorePatterns: ['__tests__'],
-  setupFilesAfterEnv: ['@inrupt/jest-jsdom-polyfills', '@testing-library/jest-dom/extend-expect'],
+  setupFilesAfterEnv: ['@inrupt/jest-jsdom-polyfills', '@testing-library/jest-dom/matchers'],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
 } satisfies Config;

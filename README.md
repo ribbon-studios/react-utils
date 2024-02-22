@@ -96,6 +96,26 @@ it('should ...', async () => {
 });
 ```
 
+### Built-Ins
+
+We have a variety of wrappers for libraries built-in to simplify testing!
+
+```tsx
+import { HelmetProvider } from '@rain-cafe/react-utils/react-helmet-async';
+import { QueryClientProvider } from '@rain-cafe/react-utils/react-query';
+import { MemoryRouter } from '@rain-cafe/react-utils/react-router';
+
+const KitchenSink = wrap.concat(HelmetProvider, QueryClientProvider, MemoryRouter);
+
+it('should ...', async () => {
+  const Component = await KitchenSink(import('../MyComponent.tsx')));
+
+  render(<Component value="Hello world!" />);
+
+  // ...
+});
+```
+
 [_**Want to Contribute?**_](/CONTRIBUTING.md)
 
 [npm-version-image]: https://img.shields.io/npm/v/@rain-cafe/react-utils.svg

@@ -1,5 +1,4 @@
-import classNames, { ArgumentArray } from 'classnames';
-import { DependencyList, useEffect, useMemo, useState } from 'react';
+import { DependencyList, useEffect, useState } from 'react';
 
 /**
  * Gives you a state value that is automatically updated whenever its dependencies change.
@@ -16,22 +15,4 @@ export function useCachedState<T>(
   useEffect(() => setValue(() => supplier(...deps)), deps);
 
   return [value, setValue];
-}
-
-/**
- * @deprecated this will be removed in v2.0.0, please swap to [useMemo](https://react.dev/reference/react/useMemo) before then.
- * @see https://react.dev/learn/you-might-not-need-an-effect
- */
-export function useReadOnlyCachedState<T>(supplier: () => T, deps: DependencyList): T {
-  const [value] = useCachedState(supplier, deps);
-
-  return value;
-}
-
-/**
- * @deprecated At best `useClassNames` is unnecessary and at worst it hurts performance. As such this will be removed in v2.0.0
- * @see https://react.dev/learn/you-might-not-need-an-effect
- */
-export function useClassNames(deps: ArgumentArray): string {
-  return useMemo(() => classNames(deps), deps);
 }

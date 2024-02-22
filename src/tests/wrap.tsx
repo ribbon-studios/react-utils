@@ -1,6 +1,10 @@
 import { ComponentProps, ElementType, useMemo } from 'react';
 
-export type SupportedComponentFormats<C extends React.ElementType> = C | Promise<C | { Component: C } | { default: C }>;
+type BaseComponentFormats<C extends React.ElementType> = C | { Component: C } | { default: C };
+
+export type SupportedComponentFormats<C extends React.ElementType> =
+  | BaseComponentFormats<C>
+  | Promise<BaseComponentFormats<C>>;
 
 async function getComponent<C extends React.ElementType>(value: SupportedComponentFormats<C>): Promise<C> {
   const response = await value;

@@ -15,7 +15,10 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxFactory": "",
-    "jsxFragmentFactory": ""
+    "jsxFragmentFactory": "",
+    "paths": {
+      "@rain-cafe/react-utils": ["./src/index.ts"]
+    }
   },
   "exclude": ["node_modules"]
 }
