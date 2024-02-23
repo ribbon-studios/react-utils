@@ -12,10 +12,10 @@ export default defineConfig({
     emptyOutDir: false,
     lib: {
       entry: [
-        resolve(__dirname, './src/index.ts'),
-        resolve(__dirname, './src/react-router.ts'),
-        resolve(__dirname, './src/react-helmet-async.ts'),
-        resolve(__dirname, './src/react-query.ts'),
+        resolve(import.meta.dirname, './src/index.ts'),
+        resolve(import.meta.dirname, './src/react-router.ts'),
+        resolve(import.meta.dirname, './src/react-helmet-async.ts'),
+        resolve(import.meta.dirname, './src/react-query.ts'),
       ],
       formats: ['es', 'cjs'],
     },
@@ -27,6 +27,9 @@ export default defineConfig({
     environment: 'happy-dom',
     setupFiles: ['./__tests__/setup-tests.ts'],
     include: ['./src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    coverage: {
+      reporter: [process.env.CI ? 'text-summary' : 'text', 'lcovonly'],
+    },
   },
   plugins: [
     react(),
