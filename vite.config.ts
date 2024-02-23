@@ -1,9 +1,12 @@
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { copyFileSync } from 'fs';
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import { dependencies, peerDependencies } from './package.json';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   build: {
@@ -12,10 +15,10 @@ export default defineConfig({
     emptyOutDir: false,
     lib: {
       entry: [
-        resolve(import.meta.dirname, './src/index.ts'),
-        resolve(import.meta.dirname, './src/react-router.ts'),
-        resolve(import.meta.dirname, './src/react-helmet-async.ts'),
-        resolve(import.meta.dirname, './src/react-query.ts'),
+        resolve(__dirname, './src/index.ts'),
+        resolve(__dirname, './src/react-router.ts'),
+        resolve(__dirname, './src/react-helmet-async.ts'),
+        resolve(__dirname, './src/react-query.ts'),
       ],
       formats: ['es', 'cjs'],
     },
