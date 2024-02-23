@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { Algorithms, hash } from '../../utils/subtle-crypto';
 
 describe('Crypto Utils', () => {

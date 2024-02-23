@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { Helmet } from 'react-helmet-async';
 import { HelmetProvider } from '../react-helmet-async';

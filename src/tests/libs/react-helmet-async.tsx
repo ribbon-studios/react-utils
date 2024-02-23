@@ -1,4 +1,4 @@
-import { wrap } from '@rain-cafe/react-utils';
-import { HelmetProvider as Provider } from 'react-helmet-async';
+import { wrap } from '../wrap';
+import helmet from 'react-helmet-async';
 
-export const HelmetProvider = wrap(Provider);
+export const HelmetProvider = wrap(helmet.HelmetProvider);

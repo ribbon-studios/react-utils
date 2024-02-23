@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { QueryClientProvider } from '../react-query';
 import { useQuery } from '@tanstack/react-query';

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -15,10 +16,8 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxFactory": "",
-    "jsxFragmentFactory": "",
-    "paths": {
-      "@rain-cafe/react-utils": ["./src/index.ts"]
-    }
+    "jsxFragmentFactory": ""
   },
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import Chance from 'chance';
 import { useSubtleCrypto } from '../use-subtle-crypto';

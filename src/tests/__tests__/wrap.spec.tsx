@@ -1,3 +1,4 @@
+import { vi, describe, it, expect } from 'vitest';
 import { MemoryRouter as Router, Route, Routes } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { wrap } from '../wrap';
@@ -106,7 +107,7 @@ describe('utils(wrap)', () => {
     });
 
     it('should providing components via default async exports', async () => {
-      const mockOptions = jest.fn();
+      const mockOptions = vi.fn();
       const Component = wrap(Router, mockOptions);
 
       const MyComponent = await Component(
