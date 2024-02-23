@@ -6,34 +6,34 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.modern.js"
     },
     "./react-router": {
-      "require": "./dist/tests/libs/react-router.cjs",
-      "types": "./dist/tests/libs/react-router.d.ts",
-      "default": "./dist/tests/libs/react-router.modern.js"
+      "types": "./dist/react-router.d.ts",
+      "require": "./dist/react-router.cjs",
+      "default": "./dist/react-router.modern.js"
     },
     "./react-helmet-async": {
-      "require": "./dist/tests/libs/react-helmet-async.cjs",
-      "types": "./dist/tests/libs/react-helmet-async.d.ts",
-      "default": "./dist/tests/libs/react-helmet-async.modern.js"
+      "types": "./dist/react-helmet-async.d.ts",
+      "require": "./dist/react-helmet-async.cjs",
+      "default": "./dist/react-helmet-async.modern.js"
     },
     "./react-query": {
-      "require": "./dist/tests/libs/react-query.cjs",
-      "types": "./dist/tests/libs/react-query.d.ts",
-      "default": "./dist/tests/libs/react-query.modern.js"
+      "types": "./dist/react-query.d.ts",
+      "require": "./dist/react-query.cjs",
+      "default": "./dist/react-query.modern.js"
     }
   },
-  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint 'src/**/*.ts'",
-    "build": "microbundle"
+    "build": "rm -rf dist && microbundle"
   },
   "peerDependencies": {
     "react": "*"
