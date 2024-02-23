@@ -1,12 +1,14 @@
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { QueryClientProvider, QueryClient, useQuery } from '@tanstack/react-query';
+import { MemoryRouter as Router, Route, Routes } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { wrap } from '../wrap';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from '../libs/react-router';
+import { QueryClientProvider } from '../libs/react-query';
 
 describe('utils(wrap)', () => {
   describe('fn(wrap)', () => {
     it('should support not providing props', async () => {
-      const Component = wrap(MemoryRouter);
+      const Component = wrap(Router);
 
       const MyComponent = await Component(() => (
         <Routes>
@@ -20,7 +22,7 @@ describe('utils(wrap)', () => {
     });
 
     it('should support options as direct props', async () => {
-      const Component = wrap(MemoryRouter, {
+      const Component = wrap(Router, {
         initialEntries: ['/profile'],
       });
 
@@ -36,7 +38,7 @@ describe('utils(wrap)', () => {
     });
 
     it('should support options as a function that returns the props', async () => {
-      const Component = wrap(MemoryRouter, () => ({
+      const Component = wrap(Router, () => ({
         initialEntries: ['/profile'],
       }));
 
@@ -52,7 +54,7 @@ describe('utils(wrap)', () => {
     });
 
     it('should providing components via promises', async () => {
-      const Component = wrap(MemoryRouter);
+      const Component = wrap(Router);
 
       const MyComponent = await Component(
         Promise.resolve(() => (
@@ -68,7 +70,7 @@ describe('utils(wrap)', () => {
     });
 
     it('should providing components via react routers async Component format', async () => {
-      const Component = wrap(MemoryRouter);
+      const Component = wrap(Router);
 
       const MyComponent = await Component(
         Promise.resolve({
@@ -86,7 +88,7 @@ describe('utils(wrap)', () => {
     });
 
     it('should providing components via default async exports', async () => {
-      const Component = wrap(MemoryRouter);
+      const Component = wrap(Router);
 
       const MyComponent = await Component(
         Promise.resolve({
@@ -105,7 +107,7 @@ describe('utils(wrap)', () => {
 
     it('should providing components via default async exports', async () => {
       const mockOptions = jest.fn();
-      const Component = wrap(MemoryRouter, mockOptions);
+      const Component = wrap(Router, mockOptions);
 
       const MyComponent = await Component(
         Promise.resolve({
@@ -134,35 +136,111 @@ describe('utils(wrap)', () => {
   });
 
   describe('fn(wrap.concat)', () => {
-    it('should support combining wrappers', async () => {
-      const Router = wrap(MemoryRouter);
-      const ReactQuery = wrap(QueryClientProvider, () => ({
-        client: new QueryClient({
-          defaultOptions: {
-            queries: {
-              retry: false,
-            },
-          },
-        }),
-      }));
+    describe('sync', () => {
+      it('should support basic component syntax', async () => {
+        const KitchenSink = wrap.concat(MemoryRouter, QueryClientProvider);
 
-      const KitchenSink = wrap.concat(Router, ReactQuery);
+        const MyComponent = await KitchenSink(({ value }: { value: string }) => {
+          const { data, isSuccess } = useQuery({
+            queryKey: [],
+            queryFn: async () => 'hello world!',
+          });
 
-      const MyComponent = await KitchenSink(({ value }: { value: string }) => {
-        const { data, isSuccess } = useQuery({
-          queryKey: [],
-          queryFn: async () => 'hello world!',
+          return (
+            <>
+              {isSuccess && <div data-testid="query">{data}</div>}
+              <Routes>
+                <Route index element={value} />
+              </Routes>
+            </>
+          );
         });
 
-        return (
-          <>
-            {isSuccess && <div data-testid="query">{data}</div>}
-            <Routes>
-              <Route index element={value} />
-            </Routes>
-          </>
-        );
+        render(<MyComponent value={'Index'} />);
+
+        expect(screen.findByTestId('query')).toBeTruthy();
+        expect(screen.getByText('Index')).toBeTruthy();
       });
+
+      it('should support react routers component syntax', async () => {
+        const KitchenSink = wrap.concat(MemoryRouter, QueryClientProvider);
+
+        const MyComponent = await KitchenSink({
+          Component: ({ value }: { value: string }) => {
+            const { data, isSuccess } = useQuery({
+              queryKey: [],
+              queryFn: async () => 'hello world!',
+            });
+
+            return (
+              <>
+                {isSuccess && <div data-testid="query">{data}</div>}
+                <Routes>
+                  <Route index element={value} />
+                </Routes>
+              </>
+            );
+          },
+        });
+
+        render(<MyComponent value={'Index'} />);
+
+        expect(screen.findByTestId('query')).toBeTruthy();
+        expect(screen.getByText('Index')).toBeTruthy();
+      });
+    });
+
+    describe('async', () => {
+      it('should support basic component syntax', async () => {
+        const KitchenSink = wrap.concat(MemoryRouter, QueryClientProvider);
+
+        const MyComponent = await KitchenSink(
+          Promise.resolve(({ value }: { value: string }) => {
+            const { data, isSuccess } = useQuery({
+              queryKey: [],
+              queryFn: async () => 'hello world!',
+            });
+
+            return (
+              <>
+                {isSuccess && <div data-testid="query">{data}</div>}
+                <Routes>
+                  <Route index element={value} />
+                </Routes>
+              </>
+            );
+          })
+        );
+
+        render(<MyComponent value={'Index'} />);
+
+        expect(screen.findByTestId('query')).toBeTruthy();
+        expect(screen.getByText('Index')).toBeTruthy();
+      });
+    });
+
+    it('should support react routers component syntax', async () => {
+      const KitchenSink = wrap.concat(MemoryRouter, QueryClientProvider);
+
+      const MyComponent = await KitchenSink(
+        Promise.resolve({
+          Component: ({ value }: { value: string }) => {
+            const { data, isSuccess } = useQuery({
+              queryKey: [],
+              queryFn: async () => 'hello world!',
+            });
+
+            return (
+              <>
+                {isSuccess && <div data-testid="query">{data}</div>}
+                <Routes>
+                  <Route index element={value} />
+                </Routes>
+              </>
+            );
+          },
+        })
+      );
 
       render(<MyComponent value={'Index'} />);
 
