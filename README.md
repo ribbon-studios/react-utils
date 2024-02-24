@@ -19,6 +19,7 @@ Collection of react utilities curated by the Rainbow Cafe~
 - [React Router](#react-router)
   - [`useLoaderData`](#useloaderdata)
   - [`defer`](#defer)
+  - [`<Await/>`](#await)
 - [Testing Utilities](#testing-utilities)
   - [`wrap`](#wrap)
   - [`wrap.concat`](#wrapconcat)
@@ -97,6 +98,35 @@ export function Profile() {
   const data = useLoaderData<typeof loader>();
 
   return value.hello;
+}
+```
+
+### `<Await/>`
+
+```tsx
+import { defer, useLoaderData, Await } from '@rain-cafe/react-utils/react-router';
+
+export async function loader() {
+  return defer({
+    greetings: Promise.resolve(['hello world', 'hallo welt']),
+  });
+}
+
+export function Profile() {
+  const data = useLoaderData<typeof loader>();
+
+  return (
+    <Await resolve={data.greetings}>
+      /* Retains the type! */
+      {(greetings) => (
+        <>
+          {greetings.map((greeting, i) => (
+            <div key={i}>{greeting}</div>
+          ))}
+        </>
+      )}
+    </Await>
+  );
 }
 ```
 

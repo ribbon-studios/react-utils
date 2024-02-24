@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from 'vitest';
-import { defer, useLoaderData } from '../react-router';
+import { Await, defer, useLoaderData } from '../react-router';
 import { useLoaderData as innerUseLoaderData } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
@@ -75,6 +75,14 @@ describe('React Router Utils', () => {
       };
 
       render(<MyComponent />);
+
+      await expect(screen.findByText('world')).resolves.toBeTruthy();
+    });
+  });
+
+  describe('<Await/>', () => {
+    it('should forward the type', async () => {
+      render(<Await resolve={Promise.resolve({ hello: 'world' })}>{(data) => data.hello}</Await>);
 
       await expect(screen.findByText('world')).resolves.toBeTruthy();
     });
