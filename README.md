@@ -9,11 +9,23 @@
 
 </div>
 
-# React Utils
+# React Utils 🔧
 
 Collection of react utilities curated by the Rainbow Cafe~
 
-## `useCachedState`
+- [Hooks](#hooks)
+  - [`useCachedState`](#usecachedstate)
+  - [`useSubtleCrypto`](#usesubtlecrypto)
+- [React Router](#react-router)
+  - [`useLoaderData`](#useloaderdata)
+  - [`defer`](#defer)
+- [Testing Utilities](#testing-utilities)
+  - [`wrap`](#wrap)
+  - [`wrap.concat`](#wrapconcat)
+
+## Hooks
+
+### `useCachedState`
 
 ```tsx
 import { useCachedState } from '@rain-cafe/react-utils';
@@ -30,7 +42,7 @@ export function MySimpleInput({ value: externalValue }: MySimpleInputProps) {
 }
 ```
 
-## `useSubtleCrypto`
+### `useSubtleCrypto`
 
 ```tsx
 import { useSubtleCrypto } from '@rain-cafe/react-utils';
@@ -46,7 +58,51 @@ export function Profile({ email }: ProfileProps) {
 }
 ```
 
-## `wrap`
+## React Router
+
+### `useLoaderData`
+
+```tsx
+import { useLoaderData } from '@rain-cafe/react-utils/react-router';
+
+export async function loader() {
+  return {
+    hello: 'world',
+  };
+}
+
+export function Profile() {
+  // No more type casting!
+  const value = useLoaderData<typeof loader>();
+
+  return value.hello;
+}
+```
+
+### `defer`
+
+```tsx
+import { defer, useLoaderData } from '@rain-cafe/react-utils/react-router';
+
+export async function loader() {
+  // Properly maps the types so our 'useLoaderData' type wrapper can get them!
+  return defer({
+    hello: 'world',
+    hallo: Promise.resolve('welt'),
+  });
+}
+
+export function Profile() {
+  // No more type casting!
+  const data = useLoaderData<typeof loader>();
+
+  return value.hello;
+}
+```
+
+## Testing Utilities
+
+### `wrap`
 
 This utility is more for testing purposes to easily create wrappers for other components.
 
