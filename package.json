@@ -50,6 +50,7 @@
     }
   },
   "scripts": {
+    "ci": "bun install --frozen-lockfile",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "lint": "eslint 'src/**/*.ts'",

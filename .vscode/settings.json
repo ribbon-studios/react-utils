@@ -16,5 +16,6 @@
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,
   "editor.formatOnSaveMode": "file",
-  "files.autoSave": "onFocusChange"
+  "files.autoSave": "onFocusChange",
+  "nixEnvSelector.nixFile": "${workspaceFolder}/shell.nix"
 }

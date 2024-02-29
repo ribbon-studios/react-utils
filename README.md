@@ -132,6 +132,53 @@ export function Profile() {
 
 ## Testing Utilities
 
+### `hooked`
+
+```tsx
+import { useMemo } from 'react';
+import { hooked } from '@rain-cafe/react-utils';
+
+const useMyHook = (value: string) => useMemo(() => value, [value]);
+
+const HookedComponent = hooked(useMyHook);
+
+it('should ...', async () => {
+  // Properties are forwarded to your component as you'd expect
+  render(<HookedComponent hook="Hello world!" />);
+
+  expect(screen.getByText('Hello world!')).toBeTruthy();
+});
+```
+
+**Multiple Arguments**
+
+```tsx
+import { useMemo } from 'react';
+import { hooked } from '@rain-cafe/react-utils';
+
+const useMyHook = (value: string, otherValue: string) => useMemo(() => `${value} ${otherValue}`, [value, otherValue]);
+
+const HookedComponent = hooked(useMyHook);
+
+it('should ...', async () => {
+  // Properties are forwarded to your component as you'd expect
+  render(<HookedComponent hook={['Hello world!', 'Hallo welt!']} />);
+
+  expect(screen.getByText('Hello world! Hallo welt!')).toBeTruthy();
+});
+```
+
+**Type Map**
+
+| Type        | Output                   |                  Example |
+| ----------- | ------------------------ | -----------------------: |
+| `string`    | `string`                 |          `'hello world'` |
+| `number`    | `number.toString()`      |                    `'1'` |
+| `boolean`   | `boolean.toString()`     |                 `'true'` |
+| `undefined` | `'<undefined>'`          |          `'<undefined>'` |
+| `object`    | `JSON.stringify(object)` | `'{ "hello": "world" }'` |
+| `array`     | `JSON.stringify(array)`  |   `'["hello", "world"]'` |
+
 ### `wrap`
 
 This utility is more for testing purposes to easily create wrappers for other components.
