@@ -29,7 +29,7 @@ Collection of react utilities curated by the Rainbow Cafe~
 ### `useCachedState`
 
 ```tsx
-import { useCachedState } from '@rain-cafe/react-utils';
+import { useCachedState } from '@ribbon-studios/react-utils';
 
 export type MySimpleInputProps = {
   value?: string;
@@ -46,7 +46,7 @@ export function MySimpleInput({ value: externalValue }: MySimpleInputProps) {
 ### `useSubtleCrypto`
 
 ```tsx
-import { useSubtleCrypto } from '@rain-cafe/react-utils';
+import { useSubtleCrypto } from '@ribbon-studios/react-utils';
 
 export type ProfileProps = {
   email?: string;
@@ -64,7 +64,7 @@ export function Profile({ email }: ProfileProps) {
 ### `useLoaderData`
 
 ```tsx
-import { useLoaderData } from '@rain-cafe/react-utils/react-router';
+import { useLoaderData } from '@ribbon-studios/react-utils/react-router';
 
 export async function loader() {
   return {
@@ -83,7 +83,7 @@ export function Profile() {
 ### `defer`
 
 ```tsx
-import { defer, useLoaderData } from '@rain-cafe/react-utils/react-router';
+import { defer, useLoaderData } from '@ribbon-studios/react-utils/react-router';
 
 export async function loader() {
   // Properly maps the types so our 'useLoaderData' type wrapper can get them!
@@ -104,7 +104,7 @@ export function Profile() {
 ### `<Await/>`
 
 ```tsx
-import { defer, useLoaderData, Await } from '@rain-cafe/react-utils/react-router';
+import { defer, useLoaderData, Await } from '@ribbon-studios/react-utils/react-router';
 
 export async function loader() {
   return defer({
@@ -136,7 +136,7 @@ export function Profile() {
 
 ```tsx
 import { useMemo } from 'react';
-import { hooked } from '@rain-cafe/react-utils';
+import { hooked } from '@ribbon-studios/react-utils';
 
 const useMyHook = (value: string) => useMemo(() => value, [value]);
 
@@ -154,7 +154,7 @@ it('should ...', async () => {
 
 ```tsx
 import { useMemo } from 'react';
-import { hooked } from '@rain-cafe/react-utils';
+import { hooked } from '@ribbon-studios/react-utils';
 
 const useMyHook = (value: string, otherValue: string) => useMemo(() => `${value} ${otherValue}`, [value, otherValue]);
 
@@ -184,7 +184,7 @@ it('should ...', async () => {
 This utility is more for testing purposes to easily create wrappers for other components.
 
 ```tsx
-import { wrap } from '@rain-cafe/react-utils';
+import { wrap } from '@ribbon-studios/react-utils';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -208,7 +208,7 @@ it('should ...', async () => {
 Helper function for wrappers that combines them together, useful if you need the whole kitchen sink!
 
 ```tsx
-import { wrap } from '@rain-cafe/react-utils';
+import { wrap } from '@ribbon-studios/react-utils';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -234,9 +234,9 @@ it('should ...', async () => {
 We have a variety of wrappers for libraries built-in to simplify testing!
 
 ```tsx
-import { HelmetProvider } from '@rain-cafe/react-utils/react-helmet-async';
-import { QueryClientProvider } from '@rain-cafe/react-utils/react-query';
-import { MemoryRouter } from '@rain-cafe/react-utils/react-router';
+import { HelmetProvider } from '@ribbon-studios/react-utils/react-helmet-async';
+import { QueryClientProvider } from '@ribbon-studios/react-utils/react-query';
+import { MemoryRouter } from '@ribbon-studios/react-utils/react-router';
 
 const KitchenSink = wrap.concat(HelmetProvider, QueryClientProvider, MemoryRouter);
 
@@ -251,16 +251,16 @@ it('should ...', async () => {
 
 [_**Want to Contribute?**_](/CONTRIBUTING.md)
 
-[npm-version-image]: https://img.shields.io/npm/v/@rain-cafe/react-utils.svg
-[npm-downloads-image]: https://img.shields.io/npm/dm/@rain-cafe/react-utils.svg
-[npm-url]: https://npmjs.org/package/@rain-cafe/react-utils
-[github-actions-image]: https://img.shields.io/github/actions/workflow/status/rain-cafe/react-utils/ci.yml?event=push
-[github-actions-url]: https://github.com/rain-cafe/react-utils/actions/workflows/ci.yml?query=branch%3Amain
-[coveralls-image]: https://img.shields.io/coveralls/rain-cafe/react-utils.svg
-[coveralls-url]: https://coveralls.io/github/rain-cafe/react-utils?branch=main
+[npm-version-image]: https://img.shields.io/npm/v/@ribbon-studios/react-utils.svg
+[npm-downloads-image]: https://img.shields.io/npm/dm/@ribbon-studios/react-utils.svg
+[npm-url]: https://npmjs.org/package/@ribbon-studios/react-utils
+[github-actions-image]: https://img.shields.io/github/actions/workflow/status/ribbon-studios/react-utils/ci.yml?event=push
+[github-actions-url]: https://github.com/ribbon-studios/react-utils/actions/workflows/ci.yml?query=branch%3Amain
+[coveralls-image]: https://img.shields.io/coveralls/ribbon-studios/react-utils.svg
+[coveralls-url]: https://coveralls.io/github/ribbon-studios/react-utils?branch=main
 [code-style-image]: https://img.shields.io/badge/code%20style-prettier-ff69b4.svg
 [code-style-url]: https://prettier.io
-[maintainability-image]: https://img.shields.io/codeclimate/maintainability/rain-cafe/refreshly
-[maintainability-url]: https://codeclimate.com/github/rain-cafe/refreshly/maintainability
+[maintainability-image]: https://img.shields.io/codeclimate/maintainability/ribbon-studios/refreshly
+[maintainability-url]: https://codeclimate.com/github/ribbon-studios/refreshly/maintainability
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 [semantic-release-image]: https://img.shields.io/badge/%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079

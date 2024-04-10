@@ -11,7 +11,9 @@ export type DeferredData<T extends Record<string, any>> = Omit<ReturnType<typeof
 
 export type DeferFunction = <T extends Record<string, any>>(data: T, init?: number | ResponseInit) => DeferredData<T>;
 
-export type UseLoaderDataFunction = <T extends LoaderFunction>() => Awaited<ReturnType<T>> extends DeferredData<any>
+export type UseLoaderDataFunction = <T extends LoaderFunction>() => LoaderData<T>;
+
+export type LoaderData<T extends LoaderFunction> = Awaited<ReturnType<T>> extends DeferredData<any>
   ? Awaited<ReturnType<T>>['data']
   : Awaited<ReturnType<T>>;
 
