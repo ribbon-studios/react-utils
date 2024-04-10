@@ -1,12 +1,11 @@
 {
   "name": "@ribbon-studios/react-utils",
   "description": "Collection of react utilities curated by the Rainbow Cafe~",
-  "version": "1.0.0",
+  "version": "2.3.2",
   "type": "module",
   "source": "src/*.ts",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.module.js",
-  "unpkg": "./dist/index.umd.js",
+  "module": "./dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
