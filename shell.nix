@@ -1,9 +1,16 @@
-{ pkgs ? import <nixpkgs-unstable> { } }:
+# Shell for bootstrapping flake-enabled nix and home-manager
+# Enter it through 'nix develop' or (legacy) 'nix-shell'
 
-pkgs.mkShell {
-  buildInputs = with pkgs; [
-    gnumake
-    nodejs_20
-    bun
-  ];
+{ pkgs ? (import ./nixpkgs.nix) { } }: {
+  default = pkgs.mkShell {
+    # Enable experimental features without having to specify the argument
+    NIX_CONFIG = "experimental-features = nix-command flakes";
+    buildInputs = with pkgs; [
+      gnumake
+      nixpkgs-fmt
+      nixd
+      bun
+      nodejs_20
+    ];
+  };
 }
