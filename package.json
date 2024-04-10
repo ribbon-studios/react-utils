@@ -1,5 +1,6 @@
 {
   "name": "@ribbon-studios/react-utils",
+  "description": "Collection of react utilities curated by the Rainbow Cafe~",
   "version": "1.0.0",
   "type": "module",
   "source": "src/*.ts",
