@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from 'vitest';
-import { Await, defer, useLoaderData } from '../react-router';
+import { Await, useLoaderData } from '../react-router';
 import { useLoaderData as innerUseLoaderData } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
@@ -10,18 +10,6 @@ vi.mock('react-router-dom', async (importOriginal: any) => ({
 const useLoaderDataMocked = vi.mocked(innerUseLoaderData);
 
 describe('React Router Utils', () => {
-  describe('fn(defer)', () => {
-    it('should map the type correctly', () => {
-      const deferred = defer({
-        test: ['hello world'],
-        other_test: 1234,
-      });
-
-      expect(deferred.data.test).toEqual(['hello world']);
-      expect(deferred.data.other_test).toEqual(1234);
-    });
-  });
-
   describe('fn(useLoaderData)', () => {
     it('should support basic data', async () => {
       const loader = () => ({
@@ -59,14 +47,14 @@ describe('React Router Utils', () => {
       await expect(screen.findByText('world')).resolves.toBeTruthy();
     });
 
-    it('should support deferring', async () => {
-      const loader = () => {
-        return defer({
+    it('should support async data', async () => {
+      const loader = async () => {
+        return {
           hello: 'world',
-        });
+        };
       };
 
-      useLoaderDataMocked.mockReturnValue(loader().data);
+      useLoaderDataMocked.mockReturnValue(await loader());
 
       const MyComponent = () => {
         const data = useLoaderData<typeof loader>();
