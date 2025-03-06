@@ -11,7 +11,7 @@
 
 # React Utils 🔧
 
-Collection of react utilities curated by the Rainbow Cafe~
+Collection of react utilities curated by Ribbon Studios Team~
 
 - [Hooks](#hooks)
   - [`useCachedState`](#usecachedstate)
