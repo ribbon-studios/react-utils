@@ -18,7 +18,6 @@ Collection of react utilities curated by Ribbon Studios Team~
   - [`useSubtleCrypto`](#usesubtlecrypto)
 - [React Router](#react-router)
   - [`useLoaderData`](#useloaderdata)
-  - [`defer`](#defer)
   - [`<Await/>`](#await)
 - [Testing Utilities](#testing-utilities)
   - [`wrap`](#wrap)
@@ -80,34 +79,13 @@ export function Profile() {
 }
 ```
 
-### `defer`
-
-```tsx
-import { defer, useLoaderData } from '@ribbon-studios/react-utils/react-router';
-
-export async function loader() {
-  // Properly maps the types so our 'useLoaderData' type wrapper can get them!
-  return defer({
-    hello: 'world',
-    hallo: Promise.resolve('welt'),
-  });
-}
-
-export function Profile() {
-  // No more type casting!
-  const data = useLoaderData<typeof loader>();
-
-  return value.hello;
-}
-```
-
 ### `<Await/>`
 
 ```tsx
-import { defer, useLoaderData, Await } from '@ribbon-studios/react-utils/react-router';
+import { useLoaderData, Await } from '@ribbon-studios/react-utils/react-router';
 
 export async function loader() {
-  return defer({
+  return Promise.resolve({
     greetings: Promise.resolve(['hello world', 'hallo welt']),
   });
 }
