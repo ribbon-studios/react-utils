@@ -238,7 +238,7 @@ it('should ...', async () => {
 [coveralls-url]: https://coveralls.io/github/ribbon-studios/react-utils?branch=main
 [code-style-image]: https://img.shields.io/badge/code%20style-prettier-ff69b4.svg
 [code-style-url]: https://prettier.io
-[maintainability-image]: https://img.shields.io/codeclimate/maintainability/ribbon-studios/refreshly
-[maintainability-url]: https://codeclimate.com/github/ribbon-studios/refreshly/maintainability
+[maintainability-image]: https://img.shields.io/codeclimate/maintainability/ribbon-studios/react-utils
+[maintainability-url]: https://codeclimate.com/github/ribbon-studios/react-utils/maintainability
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 [semantic-release-image]: https://img.shields.io/badge/%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079
