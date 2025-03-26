@@ -1,6 +1,6 @@
 import { vi, describe, it, expect } from 'vitest';
 import { Await, useLoaderData } from '../react-router';
-import { useLoaderData as innerUseLoaderData } from 'react-router-dom';
+import { useLoaderData as innerUseLoaderData, LoaderFunctionArgs, redirect } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
 vi.mock('react-router-dom', async (importOriginal: any) => ({
@@ -55,6 +55,35 @@ describe('React Router Utils', () => {
       };
 
       useLoaderDataMocked.mockReturnValue(await loader());
+
+      const MyComponent = () => {
+        const data = useLoaderData<typeof loader>();
+
+        return data.hello;
+      };
+
+      render(<MyComponent />);
+
+      await expect(screen.findByText('world')).resolves.toBeTruthy();
+    });
+
+    it('should exclude the response type', async () => {
+      const loader = async ({ params }: LoaderFunctionArgs) => {
+        if (!params.id) return redirect('/');
+
+        return {
+          hello: 'world',
+        };
+      };
+
+      useLoaderDataMocked.mockReturnValue(
+        await loader({
+          params: {
+            id: '12345',
+          },
+          request: {} as Request,
+        })
+      );
 
       const MyComponent = () => {
         const data = useLoaderData<typeof loader>();

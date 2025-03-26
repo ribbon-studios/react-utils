@@ -2,7 +2,7 @@ import { LoaderFunction, useLoaderData as innerUseLoaderData, Await as InnerAwai
 
 export type UseLoaderDataFunction = <T extends LoaderFunction>() => LoaderData<T>;
 
-export type LoaderData<T extends LoaderFunction> = Awaited<ReturnType<T>>;
+export type LoaderData<T extends LoaderFunction> = Exclude<Awaited<ReturnType<T>>, Response>;
 
 export interface AwaitProps<T> {
   children:
