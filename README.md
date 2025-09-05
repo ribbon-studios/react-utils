@@ -212,7 +212,7 @@ it('should ...', async () => {
 We have a variety of wrappers for libraries built-in to simplify testing!
 
 ```tsx
-import { HelmetProvider } from '@ribbon-studios/react-utils/react-helmet-async';
+import { HelmetProvider } from '@ribbon-studios/react-utils/react-helmet';
 import { QueryClientProvider } from '@ribbon-studios/react-utils/react-query';
 import { MemoryRouter } from '@ribbon-studios/react-utils/react-router';
 

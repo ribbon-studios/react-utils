@@ -17,7 +17,7 @@ export default defineConfig({
       entry: [
         resolve(__dirname, './src/index.ts'),
         resolve(__dirname, './src/react-router.ts'),
-        resolve(__dirname, './src/react-helmet-async.ts'),
+        resolve(__dirname, './src/react-helmet.ts'),
         resolve(__dirname, './src/react-query.ts'),
       ],
       formats: ['es', 'cjs'],
@@ -40,7 +40,7 @@ export default defineConfig({
       insertTypesEntry: true,
       afterBuild: () => {
         copyFileSync('dist/index.d.ts', 'dist/index.d.cts');
-        copyFileSync('dist/react-helmet-async.d.ts', 'dist/react-helmet-async.d.cts');
+        copyFileSync('dist/react-helmet.d.ts', 'dist/react-helmet.d.cts');
         copyFileSync('dist/react-query.d.ts', 'dist/react-query.d.cts');
         copyFileSync('dist/react-router.d.ts', 'dist/react-router.d.cts');
       },

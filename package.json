@@ -28,14 +28,14 @@
         "default": "./dist/react-router.cjs"
       }
     },
-    "./react-helmet-async": {
+    "./react-helmet": {
       "import": {
-        "types": "./dist/react-helmet-async.d.ts",
-        "default": "./dist/react-helmet-async.js"
+        "types": "./dist/react-helmet.d.ts",
+        "default": "./dist/react-helmet.js"
       },
       "require": {
-        "types": "./dist/react-helmet-async.d.cts",
-        "default": "./dist/react-helmet-async.cjs"
+        "types": "./dist/react-helmet.d.cts",
+        "default": "./dist/react-helmet.cjs"
       }
     },
     "./react-query": {
@@ -59,7 +59,7 @@
   "peerDependencies": {
     "react": "*",
     "@tanstack/react-query": ">= 5",
-    "react-helmet-async": ">= 2",
+    "@dr.pogodin/react-helmet": ">= 2",
     "react-router-dom": ">= 6"
   },
   "dependencies": {
@@ -82,7 +82,7 @@
     "jiti": "^2.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-helmet-async": "^2.0.5",
+    "@dr.pogodin/react-helmet": "^3.0.0",
     "react-router-dom": "^7.2.0",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.0",
