@@ -18,7 +18,7 @@ Collection of react utilities curated by Ribbon Studios Team~
   - [`useSubtleCrypto`](#usesubtlecrypto)
   - [`useLocalStorage`](#uselocalstorage)
   - [`useSessionStorage`](#usesessionstorage)
-  - [`useTheme`](#usetheme)
+  - [`createThemeHook`](#createthemehook)
 - [React Router](#react-router)
   - [`useLoaderData`](#useloaderdata)
   - [`<Await/>`](#await)
