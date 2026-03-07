@@ -10,7 +10,7 @@ export function useLocalStorage<T>(
   key: string,
   defaultValue?: T
 ): [T | null, React.Dispatch<React.SetStateAction<T | null>>] {
-  return $useStorage('local', key, defaultValue);
+  return $useStorage<T>('local', key, defaultValue);
 }
 
 export function useSessionStorage<T>(key: string, defaultValue: T): [T, React.Dispatch<React.SetStateAction<T>>];
@@ -22,7 +22,7 @@ export function useSessionStorage<T>(
   key: string,
   defaultValue?: T
 ): [T | null, React.Dispatch<React.SetStateAction<T | null>>] {
-  return $useStorage('session', key, defaultValue);
+  return $useStorage<T>('session', key, defaultValue);
 }
 
 export function $useStorage<T>(
@@ -40,7 +40,7 @@ export function $useStorage<T>(
   key: string,
   defaultValue?: T
 ): [T | null, React.Dispatch<React.SetStateAction<T | null>>] {
-  const [value, setValue] = useState<T | null>(RibbonStorage[type].get(key, defaultValue));
+  const [value, setValue] = useState<T | null>(RibbonStorage[type].get<T>(key, defaultValue));
 
   useEffect(() => {
     const listener = (event: RibbonStorage.ChangeEvent) => {

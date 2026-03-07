@@ -13,7 +13,7 @@ describe('Storage Hooks', () => {
     it('should retrieve values from storage', () => {
       RibbonStorage.local.set('hello', 'welt');
 
-      const { result } = renderHook(() => $useStorage('local', 'hello'));
+      const { result } = renderHook(() => $useStorage<string>('local', 'hello'));
 
       const [value] = result.current;
 
@@ -23,7 +23,7 @@ describe('Storage Hooks', () => {
     it('should support updating values in storage', () => {
       RibbonStorage.local.set('hello', 'welt');
 
-      const { result } = renderHook(() => $useStorage('local', 'hello'));
+      const { result } = renderHook(() => $useStorage<string>('local', 'hello'));
 
       const [, setValue] = result.current;
 
@@ -35,7 +35,7 @@ describe('Storage Hooks', () => {
     it('should react to changes elsewhere', async () => {
       RibbonStorage.local.set('hello', 'world');
 
-      const { result } = renderHook(() => $useStorage('local', 'hello'));
+      const { result } = renderHook(() => $useStorage<string>('local', 'hello'));
 
       expect(result.current?.[0]).toBe('world');
 
@@ -49,7 +49,7 @@ describe('Storage Hooks', () => {
     it('should ignore changes to other keys', async () => {
       RibbonStorage.local.set('hello', 'world');
 
-      const { result } = renderHook(() => $useStorage('local', 'hello'));
+      const { result } = renderHook(() => $useStorage<string>('local', 'hello'));
 
       expect(result.current?.[0]).toBe('world');
 
@@ -65,7 +65,7 @@ describe('Storage Hooks', () => {
     it('should be a shorthand for local storage', () => {
       RibbonStorage.local.set('hello', 'welt');
 
-      const { result } = renderHook(() => useLocalStorage('hello'));
+      const { result } = renderHook(() => useLocalStorage<string>('hello'));
 
       const [value] = result.current;
 
@@ -77,7 +77,7 @@ describe('Storage Hooks', () => {
     it('should be a shorthand for session storage', () => {
       RibbonStorage.session.set('hello', 'welt');
 
-      const { result } = renderHook(() => useSessionStorage('hello'));
+      const { result } = renderHook(() => useSessionStorage<string>('hello'));
 
       const [value] = result.current;
 
