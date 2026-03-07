@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { RibbonStorage } from '@ribbon-studios/js-utils';
 
+export function useLocalStorage<T>(key: string, defaultValue: T): [T, React.Dispatch<React.SetStateAction<T>>];
+export function useLocalStorage<T>(
+  key: string,
+  defaultValue?: T
+): [T | null, React.Dispatch<React.SetStateAction<T | null>>];
 export function useLocalStorage<T>(
   key: string,
   defaultValue?: T
@@ -8,6 +13,11 @@ export function useLocalStorage<T>(
   return $useStorage('local', key, defaultValue);
 }
 
+export function useSessionStorage<T>(key: string, defaultValue: T): [T, React.Dispatch<React.SetStateAction<T>>];
+export function useSessionStorage<T>(
+  key: string,
+  defaultValue?: T
+): [T | null, React.Dispatch<React.SetStateAction<T | null>>];
 export function useSessionStorage<T>(
   key: string,
   defaultValue?: T
@@ -15,6 +25,16 @@ export function useSessionStorage<T>(
   return $useStorage('session', key, defaultValue);
 }
 
+export function $useStorage<T>(
+  type: 'local' | 'session',
+  key: string,
+  defaultValue: T
+): [T, React.Dispatch<React.SetStateAction<T>>];
+export function $useStorage<T>(
+  type: 'local' | 'session',
+  key: string,
+  defaultValue?: T
+): [T | null, React.Dispatch<React.SetStateAction<T | null>>];
 export function $useStorage<T>(
   type: 'local' | 'session',
   key: string,
