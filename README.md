@@ -18,6 +18,7 @@ Collection of react utilities curated by Ribbon Studios Team~
   - [`useSubtleCrypto`](#usesubtlecrypto)
   - [`useLocalStorage`](#uselocalstorage)
   - [`useSessionStorage`](#usesessionstorage)
+  - [`useTheme`](#usetheme)
 - [React Router](#react-router)
   - [`useLoaderData`](#useloaderdata)
   - [`<Await/>`](#await)
@@ -81,6 +82,54 @@ export function Profile() {
   const [value, setValue] = useSessionStorage('hello');
 
   return value;
+}
+```
+
+### `createThemeHook`
+
+Creates a hook that automatically updates the `data-theme` attribute on the body to the active theme.
+
+```tsx
+// use-theme.ts
+import { createThemeHook } from '@ribbon-studios/react-utils';
+
+export const useTheme = createThemeHook({
+  // Ensure you use `as const` or the types won't be correct!
+  themes: ['light', 'dark'] as const,
+
+  // This is the theme that will be used when light mode is preferred
+  light: 'light',
+
+  // This is the theme that will be used when dark mode is preferred
+  dark: 'dark',
+});
+
+type Modes = typeof useTheme.$modes;
+
+// Navigation.tsx
+const THEME_LABELS: Record<Modes, string> = {
+  auto: 'Auto',
+  light: 'Light',
+  dark: 'Dark',
+};
+
+const NEXT_THEME: Record<Modes, Modes> = {
+  auto: 'light',
+  light: 'dark',
+  dark: 'auto',
+};
+
+export function Navigation() {
+  const [mode, setMode] = useTheme();
+  const nextTheme = useCallback(() => {
+    setMode((mode) => NEXT_THEME[mode]);
+  }, [setMode]);
+
+  return (
+    <div>
+      <button onClick={nextTheme}>{THEME_LABELS[mode]}</button>
+    </div>
+  );
 }
 ```
 
