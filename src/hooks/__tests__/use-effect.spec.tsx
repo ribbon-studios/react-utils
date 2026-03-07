@@ -2,7 +2,7 @@ import { vi, describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { useDidUpdateEffect } from '../use-effect';
 
-describe('Efect Hooks', () => {
+describe('Effect Hooks', () => {
   describe('hook(useDidUpdateEffect)', () => {
     const fn = vi.fn();
 

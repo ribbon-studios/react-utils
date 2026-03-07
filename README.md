@@ -16,6 +16,8 @@ Collection of react utilities curated by Ribbon Studios Team~
 - [Hooks](#hooks)
   - [`useCachedState`](#usecachedstate)
   - [`useSubtleCrypto`](#usesubtlecrypto)
+  - [`useLocalStorage`](#uselocalstorage)
+  - [`useSessionStorage`](#usesessionstorage)
 - [React Router](#react-router)
   - [`useLoaderData`](#useloaderdata)
   - [`<Await/>`](#await)
@@ -58,6 +60,30 @@ export function Profile({ email }: ProfileProps) {
 }
 ```
 
+### `useLocalStorage`
+
+```tsx
+import { useLocalStorage } from '@ribbon-studios/react-utils';
+
+export function Profile() {
+  const [value, setValue] = useLocalStorage('hello');
+
+  return value;
+}
+```
+
+### `useSessionStorage`
+
+```tsx
+import { useSessionStorage } from '@ribbon-studios/react-utils';
+
+export function Profile() {
+  const [value, setValue] = useSessionStorage('hello');
+
+  return value;
+}
+```
+
 ## React Router
 
 ### `useLoaderData`
@@ -95,7 +121,7 @@ export function Profile() {
 
   return (
     <Await resolve={data.greetings}>
-      /* Retains the type! */
+      {/* Retains the type! */}
       {(greetings) => (
         <>
           {greetings.map((greeting, i) => (
@@ -109,53 +135,6 @@ export function Profile() {
 ```
 
 ## Testing Utilities
-
-### `hooked`
-
-```tsx
-import { useMemo } from 'react';
-import { hooked } from '@ribbon-studios/react-utils';
-
-const useMyHook = (value: string) => useMemo(() => value, [value]);
-
-const HookedComponent = hooked(useMyHook);
-
-it('should ...', async () => {
-  // Properties are forwarded to your component as you'd expect
-  render(<HookedComponent hook="Hello world!" />);
-
-  expect(screen.getByText('Hello world!')).toBeTruthy();
-});
-```
-
-**Multiple Arguments**
-
-```tsx
-import { useMemo } from 'react';
-import { hooked } from '@ribbon-studios/react-utils';
-
-const useMyHook = (value: string, otherValue: string) => useMemo(() => `${value} ${otherValue}`, [value, otherValue]);
-
-const HookedComponent = hooked(useMyHook);
-
-it('should ...', async () => {
-  // Properties are forwarded to your component as you'd expect
-  render(<HookedComponent hook={['Hello world!', 'Hallo welt!']} />);
-
-  expect(screen.getByText('Hello world! Hallo welt!')).toBeTruthy();
-});
-```
-
-**Type Map**
-
-| Type        | Output                   |                  Example |
-| ----------- | ------------------------ | -----------------------: |
-| `string`    | `string`                 |          `'hello world'` |
-| `number`    | `number.toString()`      |                    `'1'` |
-| `boolean`   | `boolean.toString()`     |                 `'true'` |
-| `undefined` | `'<undefined>'`          |          `'<undefined>'` |
-| `object`    | `JSON.stringify(object)` | `'{ "hello": "world" }'` |
-| `array`     | `JSON.stringify(array)`  |   `'["hello", "world"]'` |
 
 ### `wrap`
 

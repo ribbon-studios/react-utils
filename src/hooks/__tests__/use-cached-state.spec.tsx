@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, renderHook } from '@testing-library/react';
 import { useCachedState } from '../use-cached-state';
 import Chance from 'chance';
 
@@ -11,18 +11,16 @@ describe('Cached State Hooks', () => {
       value: string;
     };
 
-    function ExampleComponent({ value }: ExampleComponentProps) {
-      const [internalValue] = useCachedState(() => value, [value]);
-
-      return <div>{internalValue}</div>;
-    }
-
     it('should cache the value', () => {
       const expectedValue = chance.string();
 
-      const component = render(<ExampleComponent value={expectedValue} />);
+      const { result, rerender } = renderHook((value: string) => useCachedState(() => value, [value]));
 
-      expect(component.getByText(expectedValue)).toBeTruthy();
+      rerender(expectedValue);
+
+      const [value] = result.current;
+
+      expect(value).toBe(expectedValue);
     });
   });
 });

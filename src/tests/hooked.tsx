@@ -10,6 +10,11 @@ function toArgs<T extends [any] | any[]>(props: T extends [any] ? T | T[0] : T):
   return [props] as T;
 }
 
+/**
+ * @deprecated in favor of the `@testing-library/react` packages {@link renderHook} function
+ *
+ * This will be removed in the next major version.
+ */
 export function hooked<T extends [any] | any[], R>(useHook: Hook<T, R>) {
   return ({ hook }: HookProps<T>) => {
     const result = useHook(...toArgs(hook));
