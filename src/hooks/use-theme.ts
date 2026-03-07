@@ -31,7 +31,7 @@ export function createThemeHook<T extends string[]>(options: createThemeHook.Opt
     return [mode, setMode, theme] as const;
   };
 
-  hook.$modes = [...options.themes, 'auto'] as const;
+  hook.$modes = 'auto' as T[number] | 'auto';
 
   return hook;
 }
