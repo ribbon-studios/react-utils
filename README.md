@@ -1,9 +1,10 @@
+**This repository has moved to https://codeberg.org/ribbon-studios/react-utils**
+
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Downloads][npm-downloads-image]][npm-url]
-[![Coveralls][coveralls-image]][coveralls-url]
+[![Coverage][coverage-image]][coverage-url]
 
-[![CI Build][github-actions-image]][github-actions-url]
-[![Maintainability][maintainability-image]][maintainability-url]
+[![CI Build][build-image]][build-url]
 [![Semantic Release][semantic-release-image]][semantic-release-url]
 [![Code Style: Prettier][code-style-image]][code-style-url]
 
@@ -260,10 +261,10 @@ it('should ...', async () => {
 [npm-version-image]: https://img.shields.io/npm/v/@ribbon-studios/react-utils.svg
 [npm-downloads-image]: https://img.shields.io/npm/dm/@ribbon-studios/react-utils.svg
 [npm-url]: https://npmjs.org/package/@ribbon-studios/react-utils
-[github-actions-image]: https://img.shields.io/github/actions/workflow/status/ribbon-studios/react-utils/ci.yml?event=push
-[github-actions-url]: https://github.com/ribbon-studios/react-utils/actions/workflows/ci.yml?query=branch%3Amain
-[coveralls-image]: https://img.shields.io/coveralls/ribbon-studios/react-utils.svg
-[coveralls-url]: https://coveralls.io/github/ribbon-studios/react-utils?branch=main
+[build-image]: https://codeberg.org/ribbon-studios/react-utils/badges/workflows/ci.yml/badge.svg?branch=main
+[build-url]: https://codeberg.org/ribbon-studios/react-utils/actions?workflow=ci.yml&branch=main
+[coverage-image]: https://ribbon-studios.codeberg.page/react-utils/badge.svg
+[coverage-url]: https://ribbon-studios.codeberg.page/react-utils
 [code-style-image]: https://img.shields.io/badge/code%20style-prettier-ff69b4.svg
 [code-style-url]: https://prettier.io
 [maintainability-image]: https://img.shields.io/codeclimate/maintainability/ribbon-studios/react-utils

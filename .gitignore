@@ -1,7 +1,0 @@
-.parcel-cache/
-node_modules/
-.env*
-.DS_Store
-coverage/
-dist/
-*.tgz
